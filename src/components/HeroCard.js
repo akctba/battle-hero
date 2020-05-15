@@ -5,6 +5,10 @@ const HeroCard = (props) => {
 
     const { hero } = props;
 
+    if(!hero) {
+        return <div>Loading...</div>
+    }
+
     return (
         <Card
             actions={[
