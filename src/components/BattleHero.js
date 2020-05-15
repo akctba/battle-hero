@@ -5,6 +5,8 @@ import Result from './Result';
 import allActions from "../store/actions";
 import { Row, Col } from 'react-materialize';
 import { useSelector, useDispatch } from "react-redux";
+import CryptoJS from 'crypto-js'
+import Axios from "axios";
 
 const BattleHero = () => {
 
@@ -15,8 +17,39 @@ const BattleHero = () => {
 
     const dispatch = useDispatch();
 
+    // const getMarvelData = () => {
+
+    //     return dispatch => {
+    //         console.log("entrou no getMarvel...");
+    //         let ts = (new Date()).getTime();
+    //         let publick = process.env.REACT_APP_MARVEL_PUBLIC_KEY;
+    //         let privatek = process.env.REACT_APP_MARVEL_PRIVATE_KEY;
+        
+    //         let hash = CryptoJS.MD5(ts+privatek+publick);
+
+    //         Axios.get(`https://gateway.marvel.com:443/v1/public/characters?apikey=${publick}&hash=${hash}&ts=${ts}&orderBy=-modified`)
+    //             .then(res => 
+    //                 dispatch({
+    //                     type: "FETCH_MARVEL_SUCCESS",
+    //                     loading: false,
+    //                     data: res.data
+    //                 }))
+    //     }
+
+    //   }
+
     useEffect(() => {
-       dispatch(allActions.heroActions.fetchMarvel())
+        dispatch(allActions.heroActions.fetchMarvel());
+        // let m = allActions.heroActions.getMarvel();
+        // console.log("m", m);
+        //dispatch(getMarvelData());
+
+        // return function(dispatch) {
+        //     return allActions.heroActions.fetchMarvel().then(h => {
+        //         dispatch()
+
+        //     })
+        // }
     }, [])
 
     // componentDidMount() {
@@ -30,7 +63,7 @@ const BattleHero = () => {
         return <div>Error! {heroes.error.message}</div>;
     }
 
-    if (heroes.loading || !heroes.data) {
+    if (heroes.loading || !heroes.data.data) {
         return <div>Loading...</div>;
     }
 

@@ -1,7 +1,7 @@
 import { FETCH_MARVEL_BEGIN, FETCH_MARVEL_SUCCESS, FETCH_MARVEL_FAILURE } from "../actions/heroActions";
 
   const initialState = {
-    marvel: {},
+    data: {},
     loading: false,
     error: null
   };
@@ -23,7 +23,7 @@ const heroesReducer = (state = initialState, action) => {
         return {
           ...state,
           loading: false,
-          marvel: action.payload.marvel
+          data: action.payload
         };
   
       case FETCH_MARVEL_FAILURE:
@@ -36,7 +36,7 @@ const heroesReducer = (state = initialState, action) => {
           ...state,
           loading: false,
           error: action.payload.error,
-          marvel: {}
+          data: {}
         };
   
       default:
