@@ -13,44 +13,8 @@ const BattleHero = () => {
     const[heroA, setHeroA] = useState();
     const[heroB, setHeroB] = useState();
 
-    const heroes = useSelector(state => state.heroes);
+    const heroes = useSelector(state => state);
 
-    const dispatch = useDispatch();
-
-    // const getMarvelData = () => {
-
-    //     return dispatch => {
-    //         console.log("entrou no getMarvel...");
-    //         let ts = (new Date()).getTime();
-    //         let publick = process.env.REACT_APP_MARVEL_PUBLIC_KEY;
-    //         let privatek = process.env.REACT_APP_MARVEL_PRIVATE_KEY;
-        
-    //         let hash = CryptoJS.MD5(ts+privatek+publick);
-
-    //         Axios.get(`https://gateway.marvel.com:443/v1/public/characters?apikey=${publick}&hash=${hash}&ts=${ts}&orderBy=-modified`)
-    //             .then(res => 
-    //                 dispatch({
-    //                     type: "FETCH_MARVEL_SUCCESS",
-    //                     loading: false,
-    //                     data: res.data
-    //                 }))
-    //     }
-
-    //   }
-
-    useEffect(() => {
-        dispatch(allActions.heroActions.fetchMarvel());
-        // let m = allActions.heroActions.getMarvel();
-        // console.log("m", m);
-        //dispatch(getMarvelData());
-
-        // return function(dispatch) {
-        //     return allActions.heroActions.fetchMarvel().then(h => {
-        //         dispatch()
-
-        //     })
-        // }
-    }, [])
 
     // componentDidMount() {
     //     this.props.dispatch(fetchProducts());
