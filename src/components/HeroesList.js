@@ -1,7 +1,11 @@
 import React from 'react';
 import { Collection, CollectionItem } from 'react-materialize';
+import { useSelector } from "react-redux";
 
-const Result = () => {
+const HeroesList = () => {
+  const content = useSelector(state => state);
+
+
     return (
         <Collection>
           <CollectionItem>
@@ -20,4 +24,4 @@ const Result = () => {
     )
 }
 
-export default Result;
+export default HeroesList;

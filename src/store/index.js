@@ -1,8 +1,8 @@
-import reducer from './marvelStore'
+import marvelReducer from './marvelStore'
 import {combineReducers} from 'redux'
 
 const rootReducer = combineReducers({
-    reducer
+    marvelReducer
 })
 
 export default rootReducer

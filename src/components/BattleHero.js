@@ -1,64 +1,59 @@
-import React, {useEffect, useState} from "react";
-//import { connect } from "react-redux";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { Row, Col } from 'react-materialize';
 import HeroCard from './HeroCard';
 import Result from './Result';
-import allActions from "../store/actions";
-import { Row, Col } from 'react-materialize';
-import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
 import CryptoJS from 'crypto-js'
-import Axios from "axios";
 
-const BattleHero = () => {
+function BattleHero() {
 
-    const[heroA, setHeroA] = useState();
-    const[heroB, setHeroB] = useState();
+  const content = useSelector(state => state);
+  const dispatch = useDispatch();
 
-    const heroes = useSelector(state => state);
+  // ######################################################
+  // THIS IS WORKING!!! COMMENTED TO SAVE MARVEL API CALLS
+  // ######################################################
+  //
+  // function getData() {
+  //   return dispatch => {
+  //     let ts = (new Date()).getTime();
+  //     let publick = process.env.REACT_APP_MARVEL_PUBLIC_KEY;
+  //     let privatek = process.env.REACT_APP_MARVEL_PRIVATE_KEY;
+  //     let hash = CryptoJS.MD5(ts+privatek+publick);
+  //     let url = `https://gateway.marvel.com:443/v1/public/characters?apikey=${publick}&hash=${hash}&ts=${ts}&orderBy=-modified`;
+  //     axios.get(url).then(res => 
+  //       dispatch({
+  //           type: "FETCH_DATA",
+  //           loading: false,
+  //           data: res.data
+  //       })
+  //     );
+  //   };
+  // }
 
+  useEffect(() => {
+    //dispatch(getData());
+  }, []);
 
-    // componentDidMount() {
-    //     this.props.dispatch(fetchProducts());
-    // }
+  console.log(content);
 
-    //temp
-    console.log("HEROES", heroes);
-   
-    if (heroes.error) {
-        return <div>Error! {heroes.error.message}</div>;
-    }
-
-    if (heroes.loading || !heroes.data.data) {
-        return <div>Loading...</div>;
-    }
-
-    const list = heroes.data.results;
-    let randomA = Math.floor(Math.random() * (list.length+1));
-    let randomB = randomA;
-    while (randomB.id === randomA.id) { //prevent duplication
-        randomB = Math.floor(Math.random() * (list.length+1));
-    }
-    setHeroA(list[randomA]);
-    setHeroB(list[randomB]);
-
-    return (
+  return (
+    <div>
+      {content.data && (
         <>
         <Row>
-            <Col l={4} m={6} s={6}><HeroCard hero={heroA} /></Col>
-            <Col l={4} m={6} s={6}><HeroCard hero={heroB} /></Col>
+            <Col l={4} m={6} s={6}><HeroCard /></Col>
+            <Col l={4} m={6} s={6}><HeroCard /></Col>
             <Col l={4} m={12} s={12}><Result /></Col>
         </Row>
         <Row>
             <Col><p>Data provided by Marvel. © 2014 Marvel</p></Col>
         </Row>
         </>
-    );
+      )}
+    </div>
+  );
 }
 
-// const mapStateToProps = state => ({
-//   heroes: state.heroes.marvel,
-//   loading: state.heroes.loading,
-//   error: state.heroes.error
-// });
-
-//export default connect(mapStateToProps)(BattleHero);
 export default BattleHero;
