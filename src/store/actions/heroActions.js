@@ -53,15 +53,15 @@ const getMarvel = () => {
 }
 
 const fetchMarvel = () => {
-  return dispatch => {
-    dispatch(fetchMarvelBegin());
+  return dispatcha => {
+    dispatcha(fetchMarvelBegin());
     return getMarvel()
       .then(json => {
-        dispatch(fetchMarvelSuccess(json.products));
+        dispatcha(fetchMarvelSuccess(json));
         return json.products;
       })
       .catch(error =>
-        dispatch(fetchMarvelFailure(error))
+        dispatcha(fetchMarvelFailure(error))
       );
   }
 }

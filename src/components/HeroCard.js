@@ -5,6 +5,8 @@ const HeroCard = (props) => {
 
     const { hero } = props;
 
+    console.log(hero);
+
     if(!hero) {
         return <div>Loading...</div>
     }
@@ -16,10 +18,10 @@ const HeroCard = (props) => {
                 <Button key="2" onClick={()=>{alert('info')}}>+Info</Button>
             ]}
             closeIcon={<Icon>close</Icon>}
-        header={<CardTitle image="https://materializecss.com/images/sample-1.jpg"><span className="heroname">{hero.name}</span></CardTitle>}
+        header={<CardTitle image={`${hero.thumbnail.path}.${hero.thumbnail.extension}`}><span className="heroname">{hero.name}</span></CardTitle>}
             revealIcon={<Icon>more_vert</Icon>}
             >
-            Hero story.
+            {hero.description}
         </Card>
     );
 }
