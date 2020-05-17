@@ -9,7 +9,7 @@ const compare = (a, b) => {
 }
 
 function battleReducer(state = [], action) {
-  console.log("Battle action", action);
+  //console.log("Battle action", action);
     switch (action.type) {
       case "ADD_VOTE":
         let heroID = action.payload.id;
