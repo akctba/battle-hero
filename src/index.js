@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
-import marvelReducer from "./store/marvelStore";
+//import marvelReducer from "./store/marvelStore";
+import rootReducer from './store/index'
 import { Provider } from "react-redux";
 
-const store = createStore(marvelReducer, applyMiddleware(thunk));
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 ReactDOM.render(
   <React.StrictMode>
