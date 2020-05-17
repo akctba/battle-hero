@@ -1,22 +1,27 @@
 import React from 'react';
-import { Collection, CollectionItem } from 'react-materialize';
+import { Collection, CollectionItem, Badge } from 'react-materialize';
+import { useSelector } from "react-redux";
+import './result.css';
 
 const Result = () => {
+
+  const counting = useSelector(state => state.battleReducer);
+
     return (
+        <>
+        <h3>Pool</h3>
+        {(!counting || counting.length === 0)? <div>No votes yet, choose your first</div> :
         <Collection>
-      <CollectionItem>
-        1- Alvin
-      </CollectionItem>
-      <CollectionItem>
-        2- Alvin
-      </CollectionItem>
-      <CollectionItem>
-        3- Alvin
-      </CollectionItem>
-      <CollectionItem>
-        4- Alvin
-      </CollectionItem>
-    </Collection>
+          {counting.map((hero, pos) => {
+            return <CollectionItem key={hero.id}>
+              <div className="resultdiv">
+                <span>{pos+1} - {hero.name}</span>
+                <Badge className="red" caption="votes" >{hero.votes}</Badge>
+              </div>
+            </CollectionItem>
+          })}
+        </Collection>}
+        </>
     )
 }
 

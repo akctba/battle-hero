@@ -1,67 +1,107 @@
-import React, {useEffect, useState} from "react";
-//import { connect } from "react-redux";
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { Row, Col } from 'react-materialize';
 import HeroCard from './HeroCard';
 import Result from './Result';
-import allActions from "../store/actions";
-import { Row, Col } from 'react-materialize';
-import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
+import CryptoJS from 'crypto-js'
 
-const BattleHero = () => {
+function BattleHero() {
 
-    const[heroA, setHeroA] = useState();
-    const[heroB, setHeroB] = useState();
+  const content = useSelector(state => state.marvelReducer);
+  const dispatch = useDispatch();
 
-    const heroes = useSelector(state => state.heroes);
+  const [heroA, setHeroA] = useState();
+  const [heroB, setHeroB] = useState();
 
-    const dispatch = useDispatch();
+  // ######################################################
+  // THIS IS WORKING!!! COMMENTED TO SAVE MARVEL API CALLS
+  // ######################################################
+  //
+  // function getData() {
+  //   return dispatch => {
+  //     let ts = (new Date()).getTime();
+  //     let publick = process.env.REACT_APP_MARVEL_PUBLIC_KEY;
+  //     let privatek = process.env.REACT_APP_MARVEL_PRIVATE_KEY;
+  //     let hash = CryptoJS.MD5(ts+privatek+publick);
+  //     let url = `https://gateway.marvel.com:443/v1/public/characters?apikey=${publick}&hash=${hash}&ts=${ts}&orderBy=-modified&limit=50`;
+  //     axios.get(url).then(res => 
+  //       dispatch({
+  //           type: "FETCH_DATA",
+  //           loading: false,
+  //           data: res.data
+  //       })
+  //     );
+  //   };
+  // }
 
-    useEffect(() => {
-       dispatch(allActions.heroActions.fetchMarvel())
-    }, [])
+  useEffect(() => {
+    // dispatch(getData());
+  }, []);
 
-    // componentDidMount() {
-    //     this.props.dispatch(fetchProducts());
-    // }
+  console.log(content);
 
-    //temp
-    console.log("HEROES", heroes);
-   
-    if (heroes.error) {
-        return <div>Error! {heroes.error.message}</div>;
+  function getRandom(arr, n) {
+    let result = new Array(n),
+        len = arr.length,
+        taken = new Array(len);
+      if (n > len)
+          throw new RangeError("getRandom: more elements taken than available");
+      while (n--) {
+          let x = Math.floor(Math.random() * len);
+          result[n] = arr[x in taken ? taken[x] : x];
+          taken[x] = --len in taken ? taken[len] : len;
+      }
+      return result;
     }
 
-    if (heroes.loading || !heroes.data) {
-        return <div>Loading...</div>;
+    if (content) {
+      const list = content.data.data.results;
+      const matchResult = getRandom(list,2);
+      if(!heroA) {
+        setHeroA(matchResult[0]);
+      }
+      if(!heroB) {
+        setHeroB(matchResult[1]);
+      }
+    }
+    
+    const voteA = () => {
+      //alert(heroA.name)
+      dispatch(vote(heroA));
+      setHeroB();
+    }
+    
+    const voteB = () => {
+      //alert(heroB.name)
+      dispatch(vote(heroB));
+      setHeroA();
     }
 
-    const list = heroes.data.results;
-    let randomA = Math.floor(Math.random() * (list.length+1));
-    let randomB = randomA;
-    while (randomB.id === randomA.id) { //prevent duplication
-        randomB = Math.floor(Math.random() * (list.length+1));
+    const vote = (voted) => {
+      return dispatch => {
+        dispatch(
+          {
+            type: "ADD_VOTE",
+            payload: {id: voted.id, name: voted.name}
+          }
+        )
+      }
     }
-    setHeroA(list[randomA]);
-    setHeroB(list[randomB]);
 
-    return (
+  return (
+    <div>
+      {content.data && (
         <>
         <Row>
-            <Col l={4} m={6} s={6}><HeroCard hero={heroA} /></Col>
-            <Col l={4} m={6} s={6}><HeroCard hero={heroB} /></Col>
+            <Col l={4} m={6} s={6}><HeroCard hero={heroA} vote={voteA} /></Col>
+            <Col l={4} m={6} s={6}><HeroCard hero={heroB} vote={voteB} /></Col>
             <Col l={4} m={12} s={12}><Result /></Col>
         </Row>
-        <Row>
-            <Col><p>Data provided by Marvel. © 2014 Marvel</p></Col>
-        </Row>
         </>
-    );
+      )}
+    </div>
+  );
 }
 
-// const mapStateToProps = state => ({
-//   heroes: state.heroes.marvel,
-//   loading: state.heroes.loading,
-//   error: state.heroes.error
-// });
-
-//export default connect(mapStateToProps)(BattleHero);
 export default BattleHero;
