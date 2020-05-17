@@ -3,7 +3,7 @@ import { Card, CardTitle, Icon, Button } from 'react-materialize';
 
 const HeroCard = ({ hero, vote }) => {
 
-    console.log(hero);
+    //console.log(hero);
 
     if(!hero) {
         return <div>Loading...</div>
