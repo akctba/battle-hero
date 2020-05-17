@@ -1,58 +1,51 @@
 import React, { useEffect } from 'react';
+import {BrowserRouter as Router, Route, Switch, Link} from "react-router-dom";
 import M from 'materialize-css';
+import { useSelector } from 'react-redux';
+import BattleHero from './components/BattleHero';
+import HeroesList from './components/HeroesList';
 import { Navbar, NavItem, Icon } from 'react-materialize';
-import './App.css';
 import 'materialize-css/dist/css/materialize.min.css';
-//import { connect, useDispatch } from "react-redux";
-import BattleHero from "./components/BattleHero"
 
-function App({heroes, loadHeroes}) {
+function App() {
 
-  useEffect(()=> {
+  const content = useSelector(state => state);
+
+  useEffect(() => {
     M.AutoInit(); //CSS
   }, []);
 
-  return (<>
-    <Navbar
-      alignLinks="right"
-      brand={<a className="brand-logo" href="/">Battle Hero!</a>}
-      id="mobile-nav"
-      menuIcon={<Icon>menu</Icon>}
-      options={{
-        draggable: true,
-        edge: 'left',
-        inDuration: 250,
-        onCloseEnd: null,
-        onCloseStart: null,
-        onOpenEnd: null,
-        onOpenStart: null,
-        outDuration: 200,
-        preventScrolling: true
-      }}
-    >
-      <NavItem href="#">
-        About
-      </NavItem>
-      <NavItem href="#">
-        Sign up
-      </NavItem>
-    </Navbar>
-      <BattleHero />
-    </>
+  console.log(content);
+
+  return (
+    <div className="App">
+    <Router>
+      <nav>
+        <div className="nav-wrapper">
+          <Link to="/" className="brand-logo">Battle Hero</Link>
+          <ul id="nav-mobile" className="right hide-on-med-and-down">
+            <li><Link to="/about">About</Link></li>
+            <li><Link to="/heroes">Heroes</Link></li>
+          </ul>
+        </div>
+      </nav>
+      <Switch>
+        <Route path="/" exact>
+          <BattleHero />
+        </Route>
+        <Route path="/heroes">
+          <HeroesList />
+        </Route>
+        <Route path="/about">
+          <div>
+            <h2>Author: Alex Kayser</h2>
+          </div>
+        </Route>
+      </Switch>
+    </Router>
+      {content.data && (<div>{content.data.attributionText}</div>)}
+    </div>
   );
 }
 
-// const mapStateToProps = (state) => {
-//   return {
-//     heroes : state.heroes.heroes
-//   }
-// }
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     loadHeroes: dispatch({type: 'LOAD_HEROES'})
-//   }
-// }
-
-//export default connect(mapStateToProps, mapDispatchToProps)(App);
 export default App;
