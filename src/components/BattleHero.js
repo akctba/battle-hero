@@ -39,7 +39,7 @@ function BattleHero() {
     dispatch(getData());
   }, []);
 
-  console.log(content);
+  //console.log(content);
 
   function getRandom(arr, n) {
     let result = new Array(n),
