@@ -10,7 +10,7 @@ const AboutPage = () => {
                         Author: Alex Kayser (2020)
                     </CollectionItem>
                     <CollectionItem>
-                        GitHub reository 
+                        GitHub repository 
                         <a className="secondary-content" href="https://github.com/akctba/battle-hero" >
                             <Icon>send</Icon>
                         </a>
