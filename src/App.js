@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
 import {BrowserRouter as Router, Route, Switch, Link} from "react-router-dom";
 import M from 'materialize-css';
+
 import { useSelector } from 'react-redux';
 import BattleHero from './components/BattleHero';
 import HeroesList from './components/HeroesList';
 //import { Navbar, NavItem, Icon } from 'react-materialize'; //There is a bug with Redux
 import 'materialize-css/dist/css/materialize.min.css';
-import AboutPage from './about';
+import AboutPage from './About';
+import AppHeader from './AppHeader';
 
 function App() {
 
@@ -21,15 +23,7 @@ function App() {
   return (
     <div className="App">
     <Router>
-      <nav>
-        <div className="nav-wrapper">
-          <Link to="/" className="brand-logo">Battle Hero</Link>
-          <ul id="nav-mobile" className="right hide-on-med-and-down">
-            <li><Link to="/about">About</Link></li>
-            <li><Link to="/heroes">Heroes</Link></li>
-          </ul>
-        </div>
-      </nav>
+      <AppHeader />
       <Switch>
         <Route path="/" exact>
           <BattleHero />
