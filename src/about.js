@@ -24,12 +24,6 @@ const AboutPage = () => {
                         </a>
                     </CollectionItem>
                     <CollectionItem>
-                        Redux 
-                        <a className="secondary-content" href="https://react-redux.js.org/">
-                            <Icon>send</Icon>
-                        </a>
-                    </CollectionItem>
-                    <CollectionItem>
                         Material Design
                         <a className="secondary-content" href="https://materializecss.com/">
                             <Icon>send</Icon>
@@ -38,6 +32,18 @@ const AboutPage = () => {
                     <CollectionItem>
                         React-Materialize
                         <a className="secondary-content" href="http://react-materialize.github.io/">
+                            <Icon>send</Icon>
+                        </a>
+                    </CollectionItem>
+                    <CollectionItem>
+                        Redux 
+                        <a className="secondary-content" href="https://react-redux.js.org/">
+                            <Icon>send</Icon>
+                        </a>
+                    </CollectionItem>
+                    <CollectionItem>
+                        React-Router 
+                        <a className="secondary-content" href="https://reactrouter.com/">
                             <Icon>send</Icon>
                         </a>
                     </CollectionItem>
