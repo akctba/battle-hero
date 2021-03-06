@@ -6,6 +6,7 @@ import BattleHero from './components/BattleHero';
 import HeroesList from './components/HeroesList';
 //import { Navbar, NavItem, Icon } from 'react-materialize'; //There is a bug with Redux
 import 'materialize-css/dist/css/materialize.min.css';
+import AboutPage from './about';
 
 function App() {
 
@@ -37,9 +38,7 @@ function App() {
           <HeroesList />
         </Route>
         <Route path="/about">
-          <div>
-            <h2>Author: Alex Kayser</h2>
-          </div>
+          <AboutPage />
         </Route>
       </Switch>
     </Router>
