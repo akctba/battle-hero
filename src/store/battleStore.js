@@ -1,9 +1,4 @@
 
-const initData = [
-  {"id": 123, "name": "Hero asdad", "votes": 1 },
-  {"id": 456, "name": "qweqwe test", "votes": 1 }
-]
-
 const compare = (a, b) => {
   return b.votes - a.votes;
 }
