@@ -58,11 +58,9 @@ function BattleHero() {
 
     if (content) {
       const list = content.data.data.results;
-      const matchResult = getRandom(list,2);
-      if(!heroA) {
+      if(!heroA || !heroB) {
+        const matchResult = getRandom(list,2);
         setHeroA(matchResult[0]);
-      }
-      if(!heroB) {
         setHeroB(matchResult[1]);
       }
     }
@@ -70,6 +68,7 @@ function BattleHero() {
     const voteA = () => {
       //alert(heroA.name)
       dispatch(vote(heroA));
+      setHeroA();
       setHeroB();
     }
     
@@ -77,6 +76,7 @@ function BattleHero() {
       //alert(heroB.name)
       dispatch(vote(heroB));
       setHeroA();
+      setHeroB();
     }
 
     const vote = (voted) => {
