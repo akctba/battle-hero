@@ -68,15 +68,15 @@ function BattleHero() {
     const voteA = () => {
       //alert(heroA.name)
       dispatch(vote(heroA));
-      setHeroA();
-      setHeroB();
+      setHeroA(undefined);
+      setHeroB(undefined);
     }
     
     const voteB = () => {
       //alert(heroB.name)
       dispatch(vote(heroB));
-      setHeroA();
-      setHeroB();
+      setHeroA(undefined);
+      setHeroB(undefined);
     }
 
     const vote = (voted) => {
