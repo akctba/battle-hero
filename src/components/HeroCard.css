@@ -1,0 +1,23 @@
+/* HeroCard component styles - fixed sizing */
+
+/* Fix card image to always be the same size */
+.hero-card .card-image img {
+    height: 300px;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Fix hero name title to have fixed space and handle overflow */
+.hero-card .card-content .card-title {
+    line-height: 1.5em;
+    /* Use min-height for 2 lines: 2 lines × 1.5em line-height = 3em */
+    min-height: 3em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* Multi-line truncation using -webkit-line-clamp
+       Note: This is widely supported in modern browsers (Chrome, Firefox, Safari, Edge)
+       Browsers that don't support it will show full text with overflow:hidden */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}

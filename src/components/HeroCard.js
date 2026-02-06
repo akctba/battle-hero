@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, CardTitle, Icon, Button } from 'react-materialize';
+import './HeroCard.css';
 
 const HeroCard = ({ hero, vote }) => {
 
@@ -11,6 +12,7 @@ const HeroCard = ({ hero, vote }) => {
 
     return (
         <Card
+            className="hero-card"
             closeIcon={<Icon>close</Icon>}
             header={<CardTitle image={`${hero.thumbnail.path}.${hero.thumbnail.extension}`} reveal waves="light"/>}
             reveal={<><p>{hero.description}</p>
