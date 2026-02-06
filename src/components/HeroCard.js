@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, CardTitle, Icon, Button } from 'react-materialize';
+import './HeroCard.css';
 
 const HeroCard = ({ hero, vote }) => {
 
