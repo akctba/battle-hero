@@ -1,62 +1,54 @@
 import React from 'react';
-import { Row, Col, Collection, CollectionItem, Icon } from 'react-materialize';
 
 const AboutPage = () => {
     return (
-        <Row>
-            <Col m={6} s={12}>
-                <Collection header="About Battle-Hero">
-                    <CollectionItem>
-                        Author: Alex Kayser (2020)
-                    </CollectionItem>
-                    <CollectionItem>
-                        GitHub repository 
+        <div className="row">
+            <div className="col m6 s12">
+                <ul className="collection with-header">
+                    <li className="collection-header"><h4>About Battle-Hero</h4></li>
+                    <li className="collection-item">Author: Alex Kayser (2020)</li>
+                    <li className="collection-item">
+                        GitHub repository
                         <a className="secondary-content" href="https://github.com/akctba/battle-hero" target="_blank" rel="noreferrer">
-                            <Icon>send</Icon>
+                            <i className="material-icons">send</i>
                         </a>
-                    </CollectionItem>
-                </Collection>
-                <Collection header="Made with">
-                    <CollectionItem>
-                        ReactJS 
+                    </li>
+                </ul>
+                <ul className="collection with-header">
+                    <li className="collection-header"><h4>Made with</h4></li>
+                    <li className="collection-item">
+                        ReactJS
                         <a className="secondary-content" href="https://reactjs.org/" target="_blank" rel="noreferrer">
-                            <Icon>send</Icon>
+                            <i className="material-icons">send</i>
                         </a>
-                    </CollectionItem>
-                    <CollectionItem>
+                    </li>
+                    <li className="collection-item">
                         Material Design
                         <a className="secondary-content" href="https://materializecss.com/" target="_blank" rel="noreferrer">
-                            <Icon>send</Icon>
+                            <i className="material-icons">send</i>
                         </a>
-                    </CollectionItem>
-                    <CollectionItem>
-                        React-Materialize
-                        <a className="secondary-content" href="http://react-materialize.github.io/" target="_blank" rel="noreferrer">
-                            <Icon>send</Icon>
-                        </a>
-                    </CollectionItem>
-                    <CollectionItem>
-                        Redux 
+                    </li>
+                    <li className="collection-item">
+                        Redux
                         <a className="secondary-content" href="https://react-redux.js.org/" target="_blank" rel="noreferrer">
-                            <Icon>send</Icon>
+                            <i className="material-icons">send</i>
                         </a>
-                    </CollectionItem>
-                    <CollectionItem>
-                        React-Router 
+                    </li>
+                    <li className="collection-item">
+                        React-Router
                         <a className="secondary-content" href="https://reactrouter.com/" target="_blank" rel="noreferrer">
-                            <Icon>send</Icon>
+                            <i className="material-icons">send</i>
                         </a>
-                    </CollectionItem>
-                    <CollectionItem>
+                    </li>
+                    <li className="collection-item">
                         Data provided by Marvel. © 2020 MARVEL API
                         <a className="secondary-content" href="http://marvel.com" target="_blank" rel="noreferrer">
-                            <Icon>send</Icon>
+                            <i className="material-icons">send</i>
                         </a>
-                    </CollectionItem>
-                
-                </Collection>
-            </Col>
-        </Row>
+                    </li>
+                </ul>
+            </div>
+        </div>
     );
 }
 
