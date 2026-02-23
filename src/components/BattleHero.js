@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { Row, Col } from 'react-materialize';
 import HeroCard from './HeroCard';
 import Result from './Result';
 import axios from "axios";
@@ -93,13 +92,11 @@ function BattleHero() {
   return (
     <div>
       {content.data && (
-        <>
-        <Row>
-            <Col l={4} m={6} s={6}><HeroCard hero={heroA} vote={voteA} /></Col>
-            <Col l={4} m={6} s={6}><HeroCard hero={heroB} vote={voteB} /></Col>
-            <Col l={4} m={12} s={12}><Result /></Col>
-        </Row>
-        </>
+        <div className="row">
+          <div className="col l4 m6 s6"><HeroCard hero={heroA} vote={voteA} /></div>
+          <div className="col l4 m6 s6"><HeroCard hero={heroB} vote={voteB} /></div>
+          <div className="col l4 m12 s12"><Result /></div>
+        </div>
       )}
     </div>
   );

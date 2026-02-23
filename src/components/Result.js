@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Collection, CollectionItem, Badge, Button } from 'react-materialize';
 import { useSelector } from "react-redux";
 import './result.css';
 
@@ -31,24 +30,23 @@ const Result = () => {
         <h3>Pool</h3>
         {(!counting || counting.length === 0)? <div>No votes yet, choose your first</div> :
         <>
-          <Collection>
-            {displayedItems.map((hero, pos) => {
-              return <CollectionItem key={hero.id}>
+          <ul className="collection">
+            {displayedItems.map((hero, pos) => (
+              <li key={hero.id} className="collection-item">
                 <div className="resultdiv">
                   <span>{pos+1} - {hero.name}</span>
-                  <Badge className="red" caption="votes" >{hero.votes}</Badge>
+                  <span className="badge red" data-badge-caption="votes">{hero.votes}</span>
                 </div>
-              </CollectionItem>
-            })}
-          </Collection>
+              </li>
+            ))}
+          </ul>
           {hasMoreItems && (
-            <Button
-              className="expand-button"
-              waves="light"
+            <button
+              className="btn waves-effect waves-light expand-button"
               onClick={() => setIsExpanded(!isExpanded)}
             >
               {isExpanded ? 'Show Less' : `Show All (${counting.length})`}
-            </Button>
+            </button>
           )}
         </>
         }

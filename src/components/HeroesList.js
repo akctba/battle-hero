@@ -1,5 +1,4 @@
 import React from 'react';
-import { Collection, CollectionItem, Button } from 'react-materialize';
 import { useSelector } from "react-redux";
 import './heroList.css'
 
@@ -16,30 +15,29 @@ const HeroesList = () => {
     return <div>No list to show</div>
   }
 
-    return (
-      <>
-        <p>This session is playing with these {list.length} heroes in the list.<br/>
-        Check character details on buttons to support this nice API from Marvel. Thanks!</p>
-        <Collection>
-          {list.map(hero => {
-            return <CollectionItem key={hero.id}>
-              <div className="heroitem">
-                <div className="heroIcon">
-                  <img alt={hero.name} src={`${hero.thumbnail.path}.${hero.thumbnail.extension}`} />
-                  <span>{hero.name}</span>
-                </div>
-                <div className="buttons">
-                  {hero.urls.map(u => {
-                    return <Button key={`${hero.name}-${u.type}`} href={u.url} node="a" waves="light" target="_blank">{u.type}</Button>
-                  })
-                  }
-                </div>
+  return (
+    <>
+      <p>This session is playing with these {list.length} heroes in the list.<br/>
+      Check character details on buttons to support this nice API from Marvel. Thanks!</p>
+      <ul className="collection">
+        {list.map(hero => (
+          <li key={hero.id} className="collection-item">
+            <div className="heroitem">
+              <div className="heroIcon">
+                <img alt={hero.name} src={`${hero.thumbnail.path}.${hero.thumbnail.extension}`} />
+                <span>{hero.name}</span>
               </div>
-            </CollectionItem>
-          })}
-        </Collection>
-      </>
-    )
+              <div className="buttons">
+                {hero.urls.map(u => (
+                  <a key={`${hero.name}-${u.type}`} href={u.url} className="btn waves-effect waves-light" target="_blank" rel="noreferrer">{u.type}</a>
+                ))}
+              </div>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </>
+  )
 }
 
 export default HeroesList;
